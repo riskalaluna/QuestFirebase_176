@@ -62,7 +62,7 @@ fun HomeScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add Kontak")
+                    contentDescription = "Add Mahasiswa")
             }
         },
     ){ innerPadding ->
@@ -82,7 +82,7 @@ fun HomeStatus(
     homeUiState: HomeUiState,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
-    onDeleteClick: (String) -> Unit = {},
+    onDeleteClick: (Mahasiswa) -> Unit = {},
     onDetailClick: (String) -> Unit
 ){
     when(homeUiState) {
@@ -141,7 +141,7 @@ fun MhsLayout(
     mahasiswa: List<Mahasiswa>,
     modifier: Modifier = Modifier,
     onDetailClick: (Mahasiswa) -> Unit,
-    onDeleteClick: (String) -> Unit = {}
+    onDeleteClick: (Mahasiswa) -> Unit = {}
 ) {
     LazyColumn (
         modifier = modifier,
@@ -155,7 +155,7 @@ fun MhsLayout(
                     .fillMaxWidth()
                     .clickable { onDetailClick(mahasiswa) },
                 onDeleteClick = {
-                    onDeleteClick(it)
+                    onDeleteClick(mahasiswa)
                 }
             )
         }
