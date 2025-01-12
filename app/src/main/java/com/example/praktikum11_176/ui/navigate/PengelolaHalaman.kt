@@ -3,6 +3,12 @@ package com.example.praktikum11_176.ui.navigate
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.praktikum11_176.ui.view.InsertMhsView
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.praktikum11_176.ui.view.HomeScreen
+
 
 @Composable
 fun PengelolaHalaman(
@@ -15,20 +21,19 @@ fun PengelolaHalaman(
         modifier = Modifier
     ) {
         composable(DestinasiHome.route) {
-            HomeView(
+            HomeScreen(
                 navigateToItemEntry = {
                     navController.navigate(DestinasiInsert.route)
                 },
             )
         }
-
         composable(DestinasiInsert.route) {
             InsertMhsView(
-                onBack = {navController.popBackStack() },
+                onBack = { navController.popBackStack() },
                 onNavigate = {
                     navController.navigate(DestinasiHome.route)
-                })
+                }
+            )
         }
     }
-
 }
