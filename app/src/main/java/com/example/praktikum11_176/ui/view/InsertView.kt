@@ -36,7 +36,7 @@ fun InsertMhsView(
     modifier: Modifier = Modifier,
     viewModel: InsertViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
-
+    val uiState = viewModel.uiState //state utama utk loading, success, error
 }
 
 @Composable
