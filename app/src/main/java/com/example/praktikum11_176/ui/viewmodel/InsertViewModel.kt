@@ -2,6 +2,11 @@ package com.example.praktikum11_176.ui.viewmodel
 
 import com.example.praktikum11_176.model.Mahasiswa
 
+data class InsertUiState(
+    val insertUiEvent: MahasiswaEvent = MahasiswaEvent(),
+    val isEntryValid: FormErrorState = FormErrorState(),
+)
+
 data class FormErrorState(
     val nim: String? = null,
     val nama: String? = null,
