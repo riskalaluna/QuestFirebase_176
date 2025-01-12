@@ -1,6 +1,14 @@
 package com.example.praktikum11_176.ui.viewmodel
 
+import android.os.Message
 import com.example.praktikum11_176.model.Mahasiswa
+
+sealed class FormState {
+    object Idle : FormState()
+    object Loading : FormState()
+    data class Success(val message: String) : FormState()
+    data class Error(val message: String) : FormState()
+}
 
 data class InsertUiState(
     val insertUiEvent: MahasiswaEvent = MahasiswaEvent(),
