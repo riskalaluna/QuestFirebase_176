@@ -17,7 +17,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.praktikum11_176.ui.viewmodel.FormErrorState
+import com.example.praktikum11_176.ui.viewmodel.FormState
+import com.example.praktikum11_176.ui.viewmodel.HomeUiState
+import com.example.praktikum11_176.ui.viewmodel.InsertUiState
 import com.example.praktikum11_176.ui.viewmodel.MahasiswaEvent
+
+@Composable
+fun InsertBodyMhs(
+    modifier: Modifier = Modifier,
+    onValueChange: (MahasiswaEvent) -> Unit,
+    uiState: InsertUiState,
+    onClick: () -> Unit,
+    homeUiState: FormState
+) {
+    Column (
+        modifier = modifier.fillMaxWidth()
+    ) {
+
+    }
+
+}
 
 @Composable
 fun FormMahasiswa(
