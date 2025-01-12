@@ -24,7 +24,20 @@ import com.example.praktikum11_176.ui.viewmodel.FormErrorState
 import com.example.praktikum11_176.ui.viewmodel.FormState
 import com.example.praktikum11_176.ui.viewmodel.HomeUiState
 import com.example.praktikum11_176.ui.viewmodel.InsertUiState
+import com.example.praktikum11_176.ui.viewmodel.InsertViewModel
 import com.example.praktikum11_176.ui.viewmodel.MahasiswaEvent
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.praktikum11_176.ui.viewmodel.PenyediaViewModel
+
+@Composable
+fun InsertMhsView(
+    onBack: () -> Unit,
+    onNavigate: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: InsertViewModel = viewModel(factory = PenyediaViewModel.Factory)
+) {
+
+}
 
 @Composable
 fun InsertBodyMhs(
