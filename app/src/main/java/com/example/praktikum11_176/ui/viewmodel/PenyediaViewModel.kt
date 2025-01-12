@@ -11,6 +11,7 @@ import com.example.praktikum11_176.MahasiswaApplications
 object PenyediaViewModel{
     val Factory = viewModelFactory {
         initializer { HomeViewModel(AplikasiMahasiswa().container.mahasiswaRepository) }
+        initializer { InsertViewModel(mhs().container.mahasiswaRepository) }
     }
 }
 fun CreationExtras.AplikasiMahasiswa(): MahasiswaApplications =
