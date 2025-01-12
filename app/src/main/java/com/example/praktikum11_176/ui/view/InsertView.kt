@@ -16,6 +16,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -31,6 +32,8 @@ import com.example.praktikum11_176.ui.viewmodel.InsertViewModel
 import com.example.praktikum11_176.ui.viewmodel.MahasiswaEvent
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.praktikum11_176.ui.viewmodel.PenyediaViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun InsertMhsView(
@@ -43,6 +46,31 @@ fun InsertMhsView(
     val uiEvent = viewModel.uiEvent //state untuk form dan validasi
     val snackbarHostState = remember {SnackbarHostState()}
     val coroutineScope = rememberCoroutineScope()
+
+    //observasi perubahan state untuk snackbar dan navigasi
+    LaunchedEffect(uiState) {
+        when (uiState) {
+            is FormState.Success -> {
+                println(
+                    "InsertMhsView: uiState is FormState.Success, navigate to home" + uiState.message
+                )
+                coroutineScope.launch {
+                    snackbarHostState.showSnackbar(uiState.message)
+                }
+                delay(700)
+                onNavigate() //navigasi langsung
+
+                viewModel.resetSnackBarMessage() //reset snackbar state
+            }
+            is FormState.Error -> {
+                coroutineScope.launch {
+                    snackbarHostState.showSnackbar(uiState.message)
+                }
+            }
+            else -> Unit
+        }
+
+    }
 }
 
 @Composable
