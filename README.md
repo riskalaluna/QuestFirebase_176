@@ -6,3 +6,6 @@
 
 //Halaman Home setelah tambah data
 ![image](https://github.com/user-attachments/assets/c18ac77e-173e-463c-a3a8-6102231484b8)
+
+//Data masuk kedalam Firestore database
+![image](https://github.com/user-attachments/assets/0c154b35-6b3c-4c9d-adf4-bb85e6c17023)
