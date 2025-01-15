@@ -1,5 +1,7 @@
 package com.example.praktikum11_176.ui.view
 
+import android.widget.LinearLayout
+import android.widget.ScrollView
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,11 +26,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.autoSaver
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.core.view.ScrollingView
 import com.example.praktikum11_176.ui.viewmodel.FormErrorState
 import com.example.praktikum11_176.ui.viewmodel.FormState
 import com.example.praktikum11_176.ui.viewmodel.HomeUiState
@@ -36,6 +40,7 @@ import com.example.praktikum11_176.ui.viewmodel.InsertUiState
 import com.example.praktikum11_176.ui.viewmodel.InsertViewModel
 import com.example.praktikum11_176.ui.viewmodel.MahasiswaEvent
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.viewpager.widget.ViewPager.LayoutParams
 import com.example.praktikum11_176.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -52,6 +57,12 @@ fun InsertMhsView(
     val uiEvent = viewModel.uiEvent //state untuk form dan validasi
     val snackbarHostState = remember {SnackbarHostState()}
     val coroutineScope = rememberCoroutineScope()
+//    val scrollView = ScrollView(this).apply {
+//        layoutParams = LinearLayout.LayoutParams(
+//            LinearLayout = LayoutParams.MATCH_PARENT,
+//            LinearLayout = LayoutParams.MATCH_PARENT
+//        )
+//    }
 
     //observasi perubahan state untuk snackbar dan navigasi
     LaunchedEffect(uiState) {
@@ -95,7 +106,7 @@ fun InsertMhsView(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(16.dp)
+                .padding(5.dp)
         ) {
             InsertBodyMhs(
                 uiState = uiEvent,
@@ -179,6 +190,7 @@ fun FormMahasiswa(
             text = errorState.nama ?: "",
             color = Color.Red
         )
+        Spacer(modifier = Modifier.height(1.dp))
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -195,7 +207,7 @@ fun FormMahasiswa(
             text = errorState.nim ?: "",
             color = Color.Red)
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(1.dp))
         Text(text = "Jenis Kelamin")
         Row (
             modifier = Modifier.fillMaxWidth()
@@ -222,6 +234,21 @@ fun FormMahasiswa(
             color = Color.Red
         )
 
+//        OutlinedTextField(
+//            modifier = Modifier.fillMaxWidth(),
+//            value = mahasiswaEvent.jenis_kelamin,
+//            onValueChange = {
+//                onValueChange(mahasiswaEvent.copy(jenis_kelamin = it))
+//            },
+//            label = { Text("Jenis Kelamin")},
+//            isError = errorState.jenis_kelamin != null,
+//            placeholder = { Text("Masukkan Jenis Kelamin")},
+//        )
+//        Text(
+//            text = errorState.jenis_kelamin ?: "",
+//            color = Color.Red)
+        Spacer(modifier = Modifier.height(1.dp))
+
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = mahasiswaEvent.alamat,
@@ -237,7 +264,7 @@ fun FormMahasiswa(
             color = Color.Red
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(1.dp))
         Text(text = "Kelas")
         Row (
             modifier = Modifier.fillMaxWidth()
@@ -264,6 +291,22 @@ fun FormMahasiswa(
             color = Color.Red
         )
 
+//        OutlinedTextField(
+//            modifier = Modifier.fillMaxWidth(),
+//            value = mahasiswaEvent.kelas,
+//            onValueChange = {
+//                onValueChange(mahasiswaEvent.copy(kelas = it))
+//            },
+//            label = { Text("Kelas")},
+//            isError = errorState.kelas != null,
+//            placeholder = { Text("Masukkan Kelas")},
+//        )
+//        Text(
+//            text = errorState.kelas ?: "",
+//            color = Color.Red)
+
+        Spacer(modifier = Modifier.height(1.dp))
+
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = mahasiswaEvent.angkatan,
@@ -277,6 +320,53 @@ fun FormMahasiswa(
         )
         Text(
             text = errorState.angkatan?: "",
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = mahasiswaEvent.judulSkripsi,
+            onValueChange = {
+                onValueChange(mahasiswaEvent.copy(judulSkripsi = it))
+            },
+            label = { Text("Judul Skripsi")},
+            isError = errorState.judulSkripsi != null,
+            placeholder = { Text("Masukkan Judul Skripsi")},
+        )
+        Text(
+            text = errorState.judulSkripsi?: "",
+            color = Color.Red
+        )
+        Spacer(modifier = Modifier.height(1.dp))
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = mahasiswaEvent.dosen1,
+            onValueChange = {
+                onValueChange(mahasiswaEvent.copy(dosen1 = it))
+            },
+            label = { Text("Dosen Pembimbing 1")},
+            isError = errorState.dosen1 != null,
+            placeholder = { Text("Masukkan Dosen Pembimbing 1")},
+        )
+        Text(
+            text = errorState.dosen1?: "",
+            color = Color.Red
+        )
+        Spacer(modifier = Modifier.height(1.dp))
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = mahasiswaEvent.dosen2,
+            onValueChange = {
+                onValueChange(mahasiswaEvent.copy(dosen2 = it))
+            },
+            label = { Text("Dosen Pembimbing 2")},
+            isError = errorState.dosen2 != null,
+            placeholder = { Text("Masukkan osen Pembimbing 2")},
+        )
+        Text(
+            text = errorState.dosen2?: "",
             color = Color.Red
         )
     }

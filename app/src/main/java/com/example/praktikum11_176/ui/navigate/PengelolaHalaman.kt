@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.praktikum11_176.ui.view.InsertMhsView
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.praktikum11_176.ui.view.HomeScreen
 
 
@@ -35,5 +37,14 @@ fun PengelolaHalaman(
                 }
             )
         }
+        composable(DestinasiDetail.route) {
+            InsertMhsView(
+                onBack = { navController.popBackStack() },
+                onNavigate = {
+                    navController.navigate(DestinasiHome.route)
+                }
+            )
+        }
+
     }
 }
